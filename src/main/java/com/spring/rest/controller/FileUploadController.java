@@ -61,6 +61,8 @@ public class FileUploadController {
 				return "You successfully uploaded file=" + name;
 			} catch (IOException IoException) {
 				return "You failed to upload " + name + " => " + IoException.getMessage();
+			}catch (Exception exception) {
+				return "You failed to upload " + name + " => " + exception.getMessage();
 			}
 		} else {
 			return "You failed to upload " + name + " because the file was empty.";
@@ -108,8 +110,10 @@ public class FileUploadController {
 				logger.info("Server File Location=" + serverFile.getAbsolutePath());
 
 				message = message + "You successfully uploaded file=" + name + "<br />";
-			} catch (Exception e) {
-				return "You failed to upload " + name + " => " + e.getMessage();
+			} catch (IOException IoException) {
+				return "You failed to upload " + name + " => " + IoException.getMessage();
+			}catch (Exception exception) {
+				return "You failed to upload " + name + " => " + exception.getMessage();
 			}
 		}
 		return message;
